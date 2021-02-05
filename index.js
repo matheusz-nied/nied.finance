@@ -12,51 +12,52 @@ const Modal = {
     }
 }
 
-const transactions = [
-    {
-        id: 1,
-        description: 'Luz',
-        amount: -50000,
-        date: '23/01/2021'
-    },
-    {
-        id: 2,
-        description: 'Website',
-        amount: 500000,
-        date: '28/01/2021'
-    },
-    {
-        id: 3,
-        description: 'Internet',
-        amount: -20000,
-        date: '15/01/2021'
-    },
-    {
-        id: 4,
-        description: 'App',
-        amount: 200000,
-        date: '15/01/2021'
-    },
-    {
-        id: 5,
-        description: 'Carro',
-        amount: -1000000,
-        date: '15/01/2021'
-    },
-]
+
 
 const Transaction = {
-    all: transactions,
+    all: [
+        {        
+            description: 'Luz',
+            amount: -50000,
+            date: '23/01/2021'
+        },
+        {       
+            description: 'Website',
+            amount: 500000,
+            date: '28/01/2021'
+        },
+        {
+            description: 'Internet',
+            amount: -20000,
+            date: '15/01/2021'
+        },
+        {
+            description: 'App',
+            amount: 200000,
+            date: '15/01/2021'
+        },
+        {
+            description: 'Carro',
+            amount: -1000000,
+            date: '15/01/2021'
+        },
+    ],
     
     add(transaction){
         Transaction.all.push(transaction);
         App.reload()
     },
 
+    remove(index){
+        Transaction.all.splice(index, 1)
+
+        App.reload()
+    },
+
     incomes(){
         //Somar as entradas
         let income = 0;
-        transactions.forEach(function (transaction) {
+        Transaction.all.forEach(function (transaction) {
             if(transaction.amount > 0) {
                 income += transaction.amount;
             }
@@ -66,7 +67,7 @@ const Transaction = {
     expenses(){
         //somar as saidas
         let expense = 0;
-        transactions.forEach(function (transaction) {
+        Transaction.all.forEach(function (transaction) {
             if(transaction.amount < 0) {
                 expense += transaction.amount;
             }
@@ -121,7 +122,7 @@ const DOM = {
         .innerHTML = Utils.formatCurrency(Transaction.total())
     },
     clearTransactions() {
-        // DOM.transactionContainer = ""
+        DOM.transactionContainer.innerHTML = ""
     }
 }
 
@@ -142,6 +143,35 @@ const Utils = {
     }
 }
 
+const Form = {
+    description: document.querySelector('input#description'),
+    amount: document.querySelector('input#amount'),
+    date: document.querySelector('input#date'),
+    getValues(){
+        return {
+            description: Form.description.value,
+            amount: Form.amount.value,
+            date: Form.date.value
+
+        }
+    },
+
+    formatData(){
+
+    },
+    validateFields(){
+
+    },
+    submit(event) {
+        event.preventDefault()
+
+        Form.validateFields()
+
+        //Form.formatData()
+
+    }
+}
+
 const App = {
     init() {
         Transaction.all.forEach(transaction => {
@@ -151,7 +181,7 @@ const App = {
         DOM.updateBalance()
     },
     reload() {
-        // DOM.clearTransaction()
+        DOM.clearTransactions()
         App.init()
     },
 }
@@ -159,21 +189,22 @@ const App = {
 
 App.init()
 
-DOM.addTransactions({
-    id: 2,
-    description: 'Teste',
-    amount: 500000,
-    date: '28/01/2021'
-})
-DOM.addTransactions({
-    id: 2,
-    description: 'Teste',
-    amount: 500000,
-    date: '28/01/2021'
-})
-DOM.addTransactions({
-    id: 2,
-    description: 'Teste',
-    amount: 500000,
-    date: '28/01/2021'
-})
+//Transaction.remove(1)
+// DOM.addTransactions({
+//     id: 2,
+//     description: 'Teste 1',
+//     amount: 500000,
+//     date: '28/01/2021'
+// })
+// DOM.addTransactions({
+//     id: 2,
+//     description: 'Teste 2',
+//     amount: 500000,
+//     date: '28/01/2021'
+// })
+// DOM.addTransactions({
+//     id: 2,
+//     description: 'Teste 3',
+//     amount: 500000,
+//     date: '28/01/2021'
+// })
