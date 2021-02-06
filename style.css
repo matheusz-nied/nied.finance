@@ -235,6 +235,8 @@ modal-content" */
 
     opacity: 0;
     visibility: hidden;
+
+    z-index: 999;
 }
 
 .modal-overlay.active {
@@ -249,7 +251,7 @@ modal-content" */
     width: 90%;
     max-width: 500px;
 
-
+    z-index: 1;
 }
 
 /* Form =================================================*/
@@ -297,6 +299,7 @@ footer {
     text-align: center;
     padding: 4rem 0 2rem;
     color: var(--color-dark);
+    margin-bottom: 0;
 
     opacity: 0.6;
 }
