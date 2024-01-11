@@ -24,7 +24,7 @@ Durante o desenvolvimento deste projeto, adquiri conhecimentos valiosos, incluin
 - **Interação com o DOM:** Aprendi a manipular o Document Object Model de forma eficiente.
 
 
-**Visualização projeto**
+## Visualização projeto
 
 ![1-image](./assets/1.png)
 
